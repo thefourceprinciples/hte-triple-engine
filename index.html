@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>HTE / MAE — Transdutation POA Cockpit</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="chips"><span class="chip">HTE / MAE online build</span><span class="chip">Transdutation Boundary Layer</span><span class="chip">Periodic Orbit Atlas</span><span class="chip">Spirograph → Kagome</span></div>
+<h1>Transdutation POA Cockpit</h1>
+<p class="sub">A grounded Harmonic Table of Elements / Materials Atlas Engine build for mapping phase paths onto kagome boundary geometry, classifying orbit behavior, and gating every claim through measurement.</p>
+</header>
+<main class="grid">
+<aside class="card sticky">
+<h2>1 · HTE identity</h2><div class="section">
+<div class="control"><label>Element / material focus</label><select id="material"><option>Hydrogen</option><option>Carbon</option><option>Silicon</option><option>Nickel</option><option>Platinum</option><option>Copper</option><option>Iron</option><option>Water film</option><option>Graphene</option><option>Piezo ceramic</option><option>Catalytic alloy</option><option>Custom material</option></select></div>
+<div class="control" id="customWrap" style="display:none"><label>Custom material</label><input id="custom" value="My material"></div>
+<div class="row"><div class="control"><label>Carrier</label><select id="carrier"><option>Acoustic vibration</option><option>Mechanical pressure</option><option>Light / optical pulse</option><option>Weak EM field</option><option>Thermal gradient</option><option>Pulsed voltage</option><option>Fluid flow</option></select></div><div class="control"><label>Claim level</label><select id="claim"><option>Visual design only</option><option>Carrier response</option><option>Boundary-dependent response</option><option>State reorganization</option><option>Material memory</option><option>Nuclear evidence required</option></select></div></div>
+</div>
+<h2>2 · Spirograph phase key</h2><div class="section">
+<div class="row3"><div class="control"><label>R</label><input id="R" type="number" min="20" max="260" value="118"></div><div class="control"><label>r</label><input id="r" type="number" min="8" max="160" value="47"></div><div class="control"><label>d</label><input id="d" type="number" min="5" max="180" value="82"></div></div>
+<div class="control"><div class="rangehead"><label>Phase offset</label><span class="val" id="vPhase"></span></div><input id="phase" type="range" min="0" max="360" value="22"></div>
+<div class="control"><div class="rangehead"><label>Harmonic multiplier</label><span class="val" id="vH"></span></div><input id="harmonic" type="range" min="1" max="12" value="5"></div>
+<div class="control"><div class="rangehead"><label>Path resolution</label><span class="val" id="vSamples"></span></div><input id="samples" type="range" min="240" max="2200" step="20" value="900"></div>
+</div>
+<h2>3 · Kagome scaffold</h2><div class="section">
+<div class="control"><div class="rangehead"><label>Lattice spacing</label><span class="val" id="vSpacing"></span></div><input id="spacing" type="range" min="26" max="92" value="52"></div>
+<div class="control"><div class="rangehead"><label>Fold angle</label><span class="val" id="vFold"></span></div><input id="fold" type="range" min="0" max="72" value="18"></div>
+<div class="control"><div class="rangehead"><label>Boundary tension</label><span class="val" id="vTension"></span></div><input id="tension" type="range" min="0" max="100" value="62"></div>
+<div class="row"><button id="defects" class="primary" type="button">Defects: on</button><button id="voids" class="primary" type="button">Void routes: on</button></div>
+</div></aside>
+<section class="card vizcard"><div class="vizbar"><div class="btns"><button id="redraw" class="primary" type="button">Redraw</button><button id="animate" type="button">Animate phase</button><button id="reset" type="button">Reset</button></div><span class="chip mono" id="readout">mode pending</span></div><canvas id="cv" width="980" height="820"></canvas><div class="metrics"><div class="metric"><small>Node hits</small><b id="mHits">0</b></div><div class="metric"><small>Recurrence</small><b id="mRec">0%</b></div><div class="metric"><small>Boundary</small><b id="mBoundary">0</b></div><div class="metric"><small>Closure</small><b id="mClosure">0</b></div><div class="metric"><small>Stability</small><b id="mStability">0</b></div><div class="metric"><small>Gate</small><b id="mGate">G0</b></div></div></section>
+<aside class="card sticky"><h2>4 · Periodic Orbit Atlas</h2><div class="section"><div class="atlas"><div class="atlasbox"><small>Orbit ID</small><b id="oId">—</b></div><div class="atlasbox"><small>Orbit class</small><b id="oClass">—</b></div><div class="atlasbox"><small>Period estimate</small><b id="oPeriod">—</b></div><div class="atlasbox"><small>Closure error</small><b id="oClosure">—</b></div><div class="atlasbox"><small>Loop count</small><b id="oLoops">—</b></div><div class="atlasbox"><small>Flip count</small><b id="oFlips">—</b></div><div class="atlasbox"><small>Winding number</small><b id="oWinding">—</b></div><div class="atlasbox"><small>Symmetry</small><b id="oSym">—</b></div><div class="atlasbox"><small>Stability</small><b id="oStab">—</b></div><div class="atlasbox"><small>Perturbation</small><b id="oPert">—</b></div><div class="atlasbox wide"><small>HTE harmonic tag</small><b id="oTag">—</b></div><div class="atlasbox wide"><small>Design translation</small><b id="oTrans">—</b></div></div></div>
+<h2>5 · MAE gate</h2><div class="section"><div class="claim" id="claimText"></div></div><div class="section gate" id="gateList"></div>
+<h2>6 · Measurement logger</h2><div class="section"><div class="row"><div class="control"><label>Before value</label><input id="before" type="number" step="any" placeholder="12.4"></div><div class="control"><label>After value</label><input id="after" type="number" step="any" placeholder="13.1"></div></div><div class="row"><div class="control"><label>Control shift</label><input id="control" type="number" step="any" placeholder="0.1"></div><div class="control"><label>Repeatability %</label><input id="repeat" type="number" min="0" max="100" value="0"></div></div><div class="control"><label>Measurement type</label><input id="measure" value="resonance / impedance / optical / catalytic / acoustic"></div><div class="control"><label>Notes</label><textarea id="notes" placeholder="What changed? What stayed the same? What was the control?"></textarea></div><div class="btns"><button id="classify" class="primary" type="button">Classify result</button><button id="addLog" type="button">Add ledger entry</button></div></div>
+<h2>7 · Local ledger</h2><div class="section"><div class="btns" style="margin-bottom:10px"><button id="exportJson">Export JSON</button><button id="exportMd">Export MD</button><button id="clearLog" class="warn">Clear</button></div><div class="loglist" id="logList"><span class="empty">No ledger entries yet.</span></div></div></aside>
+</main>
+<section class="doctrine"><h2 style="margin-top:0">Canonical doctrine</h2><blockquote>Transduction converts a carrier. Transdutation reorganizes a state. Transmutation changes nuclear identity.</blockquote><p><b>Transdutation</b> means repeatable state reorganization under boundary-conditioned resonance. POA classifies orbit closure; kagome tests whether the orbit can hold as boundary geometry; MAE decides whether the held orbit causes measurable state reorganization.</p><p><b>Hard quarantine:</b> visual overlap is not proof. Beauty is not evidence. Measurement decides.</p></section>
+<p class="foot">Built as a public HTE / MAE project artifact. Local ledger entries are stored only in this browser. Preserve raw sensor data and controls outside this design cockpit.</p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
